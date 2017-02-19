@@ -6,9 +6,9 @@ class WelcomeView extends Component {
 
     static defaultProps = {};
 
-    constructor(props, context) {
-        super(props, context);
-    }
+    // constructor(props, context) {
+    //     super(props, context);
+    // }
 
     componentWillMount() {
     }
