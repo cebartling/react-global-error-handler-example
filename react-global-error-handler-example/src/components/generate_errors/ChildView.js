@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import wrapReactComponentMethodsTryCatch from "../../WrapReactComponentMethodsTryCatch";
 
 @wrapReactComponentMethodsTryCatch
-class GenerateTopLevelErrorView extends Component {
+class ChildView extends Component {
 
     componentWillMount() {
         throw new Error('This is a test.');
@@ -18,7 +18,6 @@ class GenerateTopLevelErrorView extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         throw new Error('This is a test.');
-        return nextProps.id !== this.props.id;
 
     }
 
@@ -29,6 +28,7 @@ class GenerateTopLevelErrorView extends Component {
     render() {
         throw new Error('This is a test.');
     }
+
 }
 
-export default GenerateTopLevelErrorView;
+export default ChildView;
