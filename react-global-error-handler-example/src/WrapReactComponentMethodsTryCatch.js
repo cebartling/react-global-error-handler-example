@@ -17,8 +17,10 @@ export const config = {
 };
 
 const RenderFunctionError = (props) => {
+    console.info('Props:', props);
+    const message = `Error thrown in ${props.componentName}.render function.`;
     return (
-        <span className="text-danger">Error thrown in render function.</span>
+        <span className="text-danger">{message}</span>
     );
 };
 
@@ -51,7 +53,7 @@ const tryCatchDecorator = (component, method) => {
             }
             let returnValue = config.errorHandler(errorReport);
             if (method === 'render') {
-                return returnValue || React.createElement(RenderFunctionError);
+                return returnValue || React.createElement(RenderFunctionError, {componentName: component.constructor.name});
             }
         }
     };
