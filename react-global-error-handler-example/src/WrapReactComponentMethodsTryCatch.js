@@ -12,8 +12,7 @@ export const config = {
      */
     errorHandler: (errorReport) => {
         const qualifiedMethod = `${errorReport.component}.${errorReport.method}(${errorReport.arguments ? '...' : ''})`;
-        console.error(`Error in ${qualifiedMethod}: ${errorReport.error}`,
-            errorReport);
+        console.error(`Error caught in ${qualifiedMethod} by wrapReactComponentMethodsTryCatch:`, errorReport.error);
     }
 };
 
