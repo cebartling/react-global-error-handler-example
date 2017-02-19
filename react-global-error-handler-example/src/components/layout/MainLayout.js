@@ -44,9 +44,9 @@ class MainLayout extends Component {
                     </Nav>
                 </Navbar>
 
-                <section id="container">
+                <div className="container">
                     {this.props.children}
-                </section>
+                </div>
             </div>
         );
     }
