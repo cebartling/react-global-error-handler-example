@@ -18,7 +18,8 @@ export const config = {
 
 const RenderFunctionError = (props) => {
     console.info('Props:', props);
-    const message = `Error thrown in ${props.componentName}.render function.`;
+    const message = `Error thrown in ${props.componentName}.render function!`;
+
     return (
         <span className="text-danger">{message}</span>
     );
@@ -26,11 +27,11 @@ const RenderFunctionError = (props) => {
 
 
 /**
- * Implementation of the try/catch wrapper
- * @param  {[React.Component]} component The ES6 React.Component.prototype that contains the React lifecycle method.
+ * Implementation of the try/catch wrapper.
+ *
+ * @param  {React.Component} component The ES6 React.Component.prototype that contains the React lifecycle method.
  * @param  {string} method The name of the method to wrap ex: "render"
- * @return {[React.Component]} Returns the same React.Component.prototype method monkey-patched with the
- * specified method wrapped with a try/catch
+ * @return {React.Component} Returns the same React.Component.prototype method wrapped with a try/catch functionality.
  */
 const tryCatchDecorator = (component, method) => {
     let unsafe = component[method];
@@ -53,7 +54,8 @@ const tryCatchDecorator = (component, method) => {
             }
             let returnValue = config.errorHandler(errorReport);
             if (method === 'render') {
-                return returnValue || React.createElement(RenderFunctionError, {componentName: component.constructor.name});
+                return returnValue || React.createElement(RenderFunctionError,
+                        {componentName: component.constructor.name});
             }
         }
     };
@@ -65,12 +67,14 @@ const tryCatchDecorator = (component, method) => {
 
 /**
  * Wraps each React.Component lifecycle method with a try/catch that enables easier development
- * diagnostics of errors throwin within each method
+ * diagnostics of errors throwin within each method.
+ *
  * Methods wrapped include: `render, componentWillMount, componentDidMount, componentWillReceiveProps,
  * shouldComponentUpdate, componentWillUpdate, componentDidUpdate, componentWillUnmount`
- * @param  {[React.Component]} ComponentConstructor The React.Component you want to wrap lifecycle
+ *
+ * @param  {React.Component} ComponentConstructor The React.Component you want to wrap lifecycle
  * methods with a try/catch and error handler.
- * @return {[void]}                      [description]
+ * @return {void}                      [description]
  */
 const wrapReactComponentMethodsTryCatch = (ComponentConstructor) => {
     [
